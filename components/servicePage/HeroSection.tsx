@@ -62,9 +62,6 @@ const HeroSection = ({ hero }: ServiceHero) => {
 
           <div className="relative w-full mt-6 h-100px md:h-h-150 px-4 sm:px-6 lg:px-14  max-w-7xl mx-auto ">
             <Image
-              // src="/images/ship.jpg"
-              // alt="hero"
-
               src={hero?.cardImage?.url}
               alt={hero?.cardImage?.alternativeText || "hero"}
               width={1920}
