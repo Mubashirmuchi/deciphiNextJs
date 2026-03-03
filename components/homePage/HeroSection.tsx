@@ -4,29 +4,11 @@ import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import BackgroundVideo from "../BackgroundVideo";
 import Image from "next/image";
+import type { HeroSection } from "@/types/home";
 
-interface HeroSectionProps {
-  hero: {
-    title: {
-        titleLine1: string;
-        titleLine2: string;
-        titleLine3: string;
-    };
-    description: string;
-    backgroundVideo: {
-      url: string;
-    };
-    backgroundImage: {
-      url: string;
-    };
-    Cta: {
-      text: string;
-      url: string;
-    };
-  };
-}
 
-const HeroSection = ({ hero }: HeroSectionProps) => {
+
+const HeroSection = ({ hero }: HeroSection) => {
   const videoUrl = hero?.backgroundVideo?.url
   const imgUrl = hero?.backgroundImage?.url
 

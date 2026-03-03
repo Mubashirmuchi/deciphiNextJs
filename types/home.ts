@@ -1,3 +1,5 @@
+import { IconMap } from "@tabler/icons-react";
+
 export interface CTA {
   id: number;
   text: string;
@@ -5,7 +7,7 @@ export interface CTA {
   isExternal: boolean;
 }
 
-export interface Image {
+export interface File {
   id: number;
   documentId: string;
   name: string;
@@ -39,7 +41,8 @@ export interface BulletPoint {
 export interface AccordianItem {
   id: number;
   title: string;
-  icon:string
+  // icon:string 
+   icon: keyof typeof IconMap; 
   description: string;
 
 }
@@ -48,10 +51,28 @@ export interface Card {
   id: number;
   title: string;
   description: string;
-  images: Image[];
+  images: File[];
 }
 
 // Hero Section
+
+export interface HeroSection {
+  hero: {
+    title: {
+        titleLine1: string;
+        titleLine2: string;
+        titleLine3: string;
+    };
+    description: string;
+    backgroundVideo:File
+    backgroundImage: File
+
+    Cta: {
+      text: string;
+      url: string;
+    };
+  };
+}
 
 // About Us Section
 
@@ -62,9 +83,11 @@ export interface AboutUs {
   description: string;
   BulletPointsInsideImage: BulletPoint[];
   Cta: CTA;
-  cardImage: Image;
+  cardImage: File;
   BulletPoints2: BulletPoint[];
 }
+
+// Why Choose Us Section
 
 export interface WhyChooseUs {
   id: number;
@@ -72,9 +95,10 @@ export interface WhyChooseUs {
   label: string;
   description: string;
   Cta: CTA;
-  cardImage: Image;
+  cardImage: File;
   BulletPoint: BulletPoint[];
 }
+// Services Section
 
 export interface ServiceSection {
   id: number;
@@ -83,13 +107,15 @@ export interface ServiceSection {
   description: string;
   card: Card[];
 }
-
+// Solutions Section
 export interface SolutionsSection {
   id: number;
   title: Title;
   label: string;
   description: string;
-  cardImage: Image;
+  cardImage: File;
   BulletPointsInsideImage: BulletPoint[];
   accordian: AccordianItem[];
 }
+
+

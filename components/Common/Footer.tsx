@@ -61,7 +61,7 @@ const Footer = () => {
               {/* Logo and Description */}
               <div className="space-y-4">
                 <Image
-                  src="/images/img_frame_39.svg"
+                  src="/img_frame_39.svg"
                   alt="Company Logo"
                   width={170}
                   height={40}
