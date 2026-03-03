@@ -1,7 +1,10 @@
+import { Card } from "@/types/home";
 import Image from "next/image";
 
 
-const Grid = () => {
+const Grid = ({services}:{services:Card[]}) => {
+
+  console.log(" {services[0]?.title}", services[0]?.images[0]?.url)
   return (
     <div className="relative space-y-4 sm:space-y-6">
       {/* First Row */}
@@ -12,7 +15,7 @@ const Grid = () => {
             <div className="space-y-4">
               <div className="flex justify-between items-start pb-6 border-b-2 border-gray-100">
                 <h3 className="text-xl sm:text-2xl lg:text-3xl font-rethink font-medium text-text-secondary1 flex-1 pr-4">
-                  Cybersecurity Consultingjhjhjh
+               {services[0]?.title.split(" ")[0]} <br /> {services[0]?.title.split(" ")[1]}
                 </h3>
                 <div className="bg-[#D5C056] rounded-full p-2 shrink-0">
                   <svg
@@ -29,14 +32,13 @@ const Grid = () => {
                 </div>
               </div>
               <p className="text-base sm:text-lg font-arial leading-relaxed text-text-muted1">
-                Get strategic, expert-driven guidance to build and scale a
-                resilient security program that fits your goals.
+              {services[0]?.description}
               </p>
             </div>
             <div className="mt-auto">
               <Image
-                src="https://midnightblue-raccoon-734944.hostingersite.com/wp-content/uploads/2025/08/img_consulting_131.jpg"
-                alt="Consulting Service"
+                    src={services[0]?.images[0]?.url} 
+                    alt={services[0]?.images[0].alternativeText || "Consulting Service"}
                 width={344}
                 height={148}
                 className="w-full rounded"
@@ -50,9 +52,13 @@ const Grid = () => {
           <div className="space-y-6 sm:space-y-8">
             <div className="space-y-4">
               <div className="flex justify-between items-start pb-6 border-b-2 border-gray-100">
-                <h3 className="text-xl sm:text-2xl lg:text-3xl font-rethink font-medium text-text-secondary1 flex-1 pr-4">
-                  Security Assessment & Testing
-                </h3>
+                <h3 className="whitespace-pre-line text-xl sm:text-2xl lg:text-3xl font-rethink font-medium text-text-secondary1 flex-1 pr-4">
+
+  {services[1]?.title.split(" ").slice(0, -1).join(" ")}
+  <br />
+  {services[1]?.title.split(" ").slice(-1)}
+
+             </h3>
                 <div className="bg-[#5BD661] rounded-full p-2 shrink-0">
                   <svg
                   height="32"
@@ -75,8 +81,8 @@ const Grid = () => {
             <div className="flex flex-col sm:flex-row gap-4 mt-auto">
               <div className="flex-1">
                 <Image
-                  src="https://midnightblue-raccoon-734944.hostingersite.com/wp-content/uploads/2025/09/3099de0aa477b5af3188bed9d56541638939a9ae.png"
-                  alt="Assessment Service"
+                  src={services[1]?.images[0]?.url || ""}
+                  alt={services[1]?.images[0]?.alternativeText || "Assessment Service"}
                   width={354}
                   height={220}
                   className="w-full rounded"
@@ -85,11 +91,12 @@ const Grid = () => {
 
               <div className="w-full sm:w-40">
                 <Image
-                  src="https://midnightblue-raccoon-734944.hostingersite.com/wp-content/uploads/2025/08/pexels-thisisengineering-3862383-scaled-e1756632630839.jpg"
-                  alt="Testing Service"
+                 src={services[1]?.images[1]?.url} 
+                    alt={services[1]?.images[1]?.alternativeText || "Assessment Service"}
+               
                   width={158}
                   height={226}
-                  className="w-full h-full  rounded"
+                  className="w-full h-full  rounded object-bottom-right"
                 />
               </div>
             </div>
@@ -115,18 +122,20 @@ const Grid = () => {
                 </svg>
               </div>
               <h3 className="text-xl sm:text-2xl lg:text-3xl font-rethink font-medium text-text-secondary1">
-                Cybersecurity Awareness Training
+             {  services[2]?.title.split(" ")[0]} <br /> {services[2]?.title.split(" ")[1]}
               </h3>
             </div>
             <p className="text-base sm:text-lg font-arial leading-relaxed text-text-muted1">
-              Empower your team with practical training that turns your people
-              into your first line of defense.
+           { services[2]?.description}
             </p>
           </div>
           <div className="w-full">
             <Image
-              src="/images/img_676e144f27d86c3.svg"
-              alt="Training Service"
+           
+
+                   src={services[2]?.images[0]?.url} 
+                    alt={services[2]?.images[0]?.alternativeText || "Training Service"}
+               
               width={392}
               height={266}
               className="w-full"
@@ -143,7 +152,7 @@ const Grid = () => {
             <div className="space-y-4">
               <div className="flex justify-between items-start pb-6 border-b-2 border-gray-100">
                 <h3 className="text-lg sm:text-xl lg:text-2xl font-rethink font-medium text-text-secondary1 flex-1 pr-4">
-                  System Integration
+                  {  services[3]?.title.split(" ")[0]} <br /> {services[3]?.title.split(" ")[1]}
                 </h3>
                 <div className="bg-[#58C9D6] rounded-full  shrink-0 p-2">
                   <svg
@@ -161,16 +170,15 @@ const Grid = () => {
                 </div>
               </div>
               <p className="text-sm sm:text-base font-arial leading-relaxed text-text-muted1">
-                Seamlessly connect and secure your tools, platforms, and
-                infrastructure—without compromising performance.
+               { services[3]?.description}
               </p>
             </div>
             <div className="mt-auto">
                 {/* bg-gradient-to-b */}
-              <div className=" bg-linear-to-b from-red-600 to-red-800 rounded p-4">
+              <div className="bg-linear-to-b from-red-600 to-red-800  rounded p-4">
                 <Image
-                  src="/images/img_65e163ee818a060.png"
-                  alt="Integration Service"
+                  src={services[3]?.images[0]?.url}
+                  alt={services[3]?.images[0]?.alternativeText || "Integration Service"}
                   width={300}
                   height={92}
                   className="w-full"
@@ -186,7 +194,7 @@ const Grid = () => {
             <div className="space-y-4">
               <div className="flex justify-between items-start pb-6 border-b-2 border-gray-100">
                 <h3 className="text-lg sm:text-xl lg:text-2xl font-rethink font-medium text-text-secondary1 flex-1 pr-4">
-                  OT Cybersecurity
+                  {  services[4]?.title.split(" ")[0]} <br /> {services[4]?.title.split(" ")[1]}
                 </h3>
                 <div className="bg-red-500 rounded-full p-2 shrink-0">
                   <svg
@@ -208,24 +216,16 @@ const Grid = () => {
                 </div>
               </div>
               <p className="text-sm sm:text-base font-arial leading-relaxed text-text-muted1">
-                Protect your operational technology from growing cyber threats
-                with industry-specific defense strategies.
+                { services[4]?.description}
               </p>
             </div>
             <div className="mt-auto space-y-3">
-              {/* <Image
-                src="/images/img_group_61.svg"
-                alt="OT Service 1"
-                width={304}
-                height={38}
-                className="w-full"
-              /> */}
+           
               <Image
                 src={
-                  "https://midnightblue-raccoon-734944.hostingersite.com/wp-content/uploads/2025/09/ChatGPT-Image-Sep-4-2025-02_52_55-PM.png"
-                }
-                // src="/images/img_group_65.svg"
-                alt="OT Service 2"
+                  services[4]?.images[0]?.url}
+                alt={services[4]?.images[0]?.alternativeText || "OT Service 1"}
+           
                 width={306}
                 height={86}
                 className="w-full"
@@ -240,9 +240,7 @@ const Grid = () => {
             <div className="space-y-4">
               <div className="flex justify-between items-start pb-6 border-b-2 border-gray-100">
                 <h3 className="text-lg sm:text-xl lg:text-2xl font-rethink font-medium text-text-secondary1 flex-1 pr-4">
-                  Cloud
-                  <br />
-                  Security
+                  {services[5]?.title.split(" ")[0]} <br /> {services[5]?.title.split(" ")[1]}
                 </h3>
                 <div className="bg-[#57AFD5] rounded-full p-2 shrink-0">
                   <svg
@@ -259,14 +257,13 @@ const Grid = () => {
                 </div>
               </div>
               <p className="text-sm sm:text-base font-arial leading-relaxed text-text-muted1">
-                Secure your cloud environment with confidence—from configuration
-                to compliance, we have got you covered.
+                { services[5]?.description}
               </p>
             </div>
             <div className="mt-auto">
               <Image
-                src="https://midnightblue-raccoon-734944.hostingersite.com/wp-content/uploads/2025/09/paul-hanaoka-s0XabTAKvak-unsplash-scaled.jpg"
-                alt="Cloud Security Service"
+                src={services[5]?.images[0]?.url}
+                alt={services[5]?.images[0]?.alternativeText || "Cloud Security Service"}
                 width={302}
                 height={172}
                 className="w-full rounded"

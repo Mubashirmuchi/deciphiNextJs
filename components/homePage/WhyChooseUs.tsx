@@ -6,7 +6,6 @@ import { Button } from "../ui/button";
 import type { WhyChooseUs } from "@/types/home";
 
 const ChooseUsSection = ({chooseUs}: {chooseUs: WhyChooseUs }) => {
-    console.log("chooseUs",chooseUs)
   return (
     <section id="why-choose-us" className="w-full  pb-12">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -1,7 +1,6 @@
 import { strapiFetch } from "@/lib/strapi";
 import qs from "qs";
 
-
 /* ================= HOME PAGE ================= */
 
 export async function getHome(locale: string) {
@@ -23,38 +22,53 @@ export async function getHome(locale: string) {
             },
             Cta: true,
             cardImage: true,
-             BulletPoints2: {
+            BulletPoints2: {
               populate: true,
             },
           },
         },
-        WhyChooseUs:{
-           populate: {
+        WhyChooseUs: {
+          populate: {
             BulletPointsInsideImage: {
               populate: true,
             },
             Cta: true,
             cardImage: true,
-          
           },
-        }
+        },
+
+        ServiceSection: {
+          populate: {
+            card: {
+              populate: {
+                images: true,
+              },
+            },
+          },
+        },
+
+        SolutionsSection: {
+          populate: {
+            BulletPointsInsideImage: {
+              populate: true,
+            },
+            cardImage: true,
+            accordian:true,
+            
+          },
+        },
       },
     },
     {
       encodeValuesOnly: true, // important
-    }
+    },
   );
 
   const res = await strapiFetch(`/api/home-page?${query}`);
-
-
 
   if (!res?.data && locale !== "en") {
     return getHome("en"); // fallback
   }
 
   return res?.data || null;
-
-  
 }
-

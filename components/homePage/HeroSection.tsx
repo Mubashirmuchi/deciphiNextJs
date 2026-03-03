@@ -65,7 +65,7 @@ const HeroSection = ({ hero }: HeroSectionProps) => {
             {hero?.title.titleLine2}
             <br className="hidden sm:block" />
             <span className="sm:hidden"> </span>
-            {hero?.title.titleLine3}.
+            {hero?.title.titleLine3}
           </h1>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-arial font-normal leading-relaxed max-w-3xl mx-auto text-text-2">
             {hero?.description}

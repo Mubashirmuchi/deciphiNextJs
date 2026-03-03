@@ -1,9 +1,10 @@
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 import Grid from "./grid";
+import type { ServiceSection } from "@/types/home";
 
-const ServicesSection = () => {
-  return (
+const ServicesSection = ({ServiceSection}:{ServiceSection:ServiceSection}) => {
+ return (
     <section className="relative  flex flex-col gap-5 w-full  bg-white max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* dark:bg-black */}
       <div
@@ -23,23 +24,20 @@ const ServicesSection = () => {
         className="border border-black/10 relative bg-whit self-start"
       >
         <div className="bg-green-600 w-2 h-2 rounded-full mr-2 "></div>
-        SERVICES
+        {ServiceSection?.label || "OUR SERVICES"}
       </Button>
       <h2 className="relative text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-rethink font-medium leading-tight ">
         <span className=" p-2 mr-3 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-rethink font-medium leading-tight  bg-[#E85744] text-white w-fit">
-          Security{" "}
+        {ServiceSection?.title.titleLine1}
         </span>
-        That Fits
+         {ServiceSection?.title.titleLine2}
         <br />
       </h2>
 
       <p className="relative max-w-5xl text-base sm:text-lg font-arial leading-relaxed text-black/60">
-        I We connect the dots — so you don&apos;t have to. Partnering with
-        industry leaders, we design and implement solutions tailored to your
-        business, ensuring resilience and seamless operations without missing a
-        beat.
+         {ServiceSection?.description}
       </p>
-      <Grid />
+      <Grid services={ServiceSection?.card} />
     </section>
   );
 };

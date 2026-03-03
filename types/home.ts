@@ -36,6 +36,21 @@ export interface BulletPoint {
   point: string;
 }
 
+export interface AccordianItem {
+  id: number;
+  title: string;
+  icon:string
+  description: string;
+
+}
+
+export interface Card {
+  id: number;
+  title: string;
+  description: string;
+  images: Image[];
+}
+
 // Hero Section
 
 // About Us Section
@@ -59,4 +74,22 @@ export interface WhyChooseUs {
   Cta: CTA;
   cardImage: Image;
   BulletPoint: BulletPoint[];
+}
+
+export interface ServiceSection {
+  id: number;
+  label: string;
+  title: Title;
+  description: string;
+  card: Card[];
+}
+
+export interface SolutionsSection {
+  id: number;
+  title: Title;
+  label: string;
+  description: string;
+  cardImage: Image;
+  BulletPointsInsideImage: BulletPoint[];
+  accordian: AccordianItem[];
 }
