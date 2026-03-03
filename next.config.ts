@@ -14,6 +14,15 @@ const nextConfig: NextConfig = {
         hostname: "midnightblue-raccoon-734944.hostingersite.com",
         pathname: "/**",
       },
+      {
+        protocol: "http",
+        hostname: "localhost",
+        pathname: "/**",
+      },{
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        pathname: "/**",
+      }
     ],
   },
 
