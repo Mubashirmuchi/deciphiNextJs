@@ -17,7 +17,7 @@ export async function strapiFetch(path: string,
     },
     // cache: options.cache ?? "no-store",
   });
-
+  
   if (!res.ok) {
     const text = await res.text();
     throw new Error(`Strapi ${res.status}: ${text}`);
