@@ -209,3 +209,29 @@ const ArticlePage = async ({ params }: PageProps) => {
 };
 
 export default ArticlePage;
+
+
+// export async function generateMetadata({
+//   params,
+// }: PageProps): Promise<Metadata> {
+//   const resolveParams = await params;
+//   const slug = await resolveParams?.slug;
+//   const { isEnabled: isDraftMode } = await draftMode();
+//   const status = isDraftMode ? "draft" : "published";
+
+//   const data = await getBlogPostBySlug(slug, status);
+
+//   if (!data?.data?.[0]) {
+//     return {
+//       title: "Next.js Strapi Preview",
+//       description: "Next.js Strapi Preview",
+//     };
+//   }
+
+//   const post = data.data[0];
+
+//   return {
+//     title: post.title,
+//     description: post.description,
+//   };
+// }

@@ -7,17 +7,25 @@ import ChooseUsSection from "@/components/homePage/WhyChooseUs";
 import { getHome } from "@/data/loaders";
 
 export default async function Home() {
-    const homePage = await getHome("en");
+  const homePage = await getHome("en");
+  const seo = homePage?.seo;
   return (
-    
-        <main>
-          <PageWrapper>
-            <HeroSection hero={homePage?.hero} />
-            <AboutSection about={homePage?.AboutUs}/>
-            <ChooseUsSection chooseUs={homePage?.WhyChooseUs}/>
-            <ServicesSection ServiceSection={homePage?.ServiceSection} />
-            <Solutions solutionsSection={homePage?.SolutionsSection}/>
-       </PageWrapper> </main>
-    
+    <main>
+      {seo?.structuredData && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(seo.structuredData),
+          }}
+        />
+      )}
+      <PageWrapper>
+        <HeroSection hero={homePage?.hero} />
+        <AboutSection about={homePage?.AboutUs} />
+        <ChooseUsSection chooseUs={homePage?.WhyChooseUs} />
+        <ServicesSection ServiceSection={homePage?.ServiceSection} />
+        <Solutions solutionsSection={homePage?.SolutionsSection} />
+      </PageWrapper>{" "}
+    </main>
   );
 }

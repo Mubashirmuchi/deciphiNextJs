@@ -155,6 +155,17 @@ export async function getHome(locale: string) {
     {
       locale,
       populate: {
+       seo: {
+        populate: {
+          metaImage: true,
+          openGraph: {
+            populate: {
+              ogImage: true,
+            },
+          },
+          
+        },
+      },
         hero: {
           populate: {
             backgroundImage: true,
