@@ -11,39 +11,29 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
+type ReatedPost = {
+  slug: string;
+  title: string;
+  image: {
+    url: string;
+    alt: string;
+  };
+  publishedAt: string;
+};
+
 const ArticlePage = async ({ params }: PageProps) => {
   const resolveParams = await params;
 
   const slug = await resolveParams?.slug;
 
-  const relatedPosts = [
-    {
-      slug: "network-security-best-practices",
-      title: "Network Security Best Practices",
-      featuredImage: {
-        url: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b",
-        alt: "Network security image",
-      },
-      publishedAt: "2026-02-20T10:00:00.000Z",
-    },
-    {
-      slug: "cloud-security-strategies",
-      title: "Cloud Security Strategies for Enterprises",
-      featuredImage: {
-        url: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31",
-        alt: "Cloud security",
-      },
-      publishedAt: "2026-02-15T10:00:00.000Z",
-    },
-  ];
+
 
   const post = await getBlogPostBySlug(slug);
 
   const categoryName = post?.category?.name || "";
 
-  const relatedPosts22 = await getBlogPosts(1, "", categoryName, slug);
+  const relatedPosts = await getBlogPosts(1, "", categoryName, slug);
 
-  console.log("relatedPosts22", relatedPosts22);
   if (!post) {
     notFound();
   }
@@ -169,16 +159,18 @@ const ArticlePage = async ({ params }: PageProps) => {
                 <h3 className="text-lg font-semibold mb-4">Related Articles</h3>
 
                 <div className="space-y-4">
-                  {relatedPosts.map((relatedPost) => (
+
+
+                  {relatedPosts.map((relatedPost:ReatedPost) => (
                     <Link
-                      key={relatedPost.slug}
-                      href={`/blog/${relatedPost.slug}`}
+                      key={relatedPost?.slug}
+                      href={`/blog/${relatedPost?.slug}`}
                       className="flex gap-3"
                     >
                       <div className="relative w-20 h-16 rounded-lg overflow-hidden">
                         <Image
-                          src={relatedPost.featuredImage.url}
-                          alt={relatedPost.featuredImage.alt}
+                          src={relatedPost?.image?.url || ""}
+                          alt={relatedPost?.image?.alt ||""}
                           fill
                           className="object-cover"
                         />
@@ -186,11 +178,11 @@ const ArticlePage = async ({ params }: PageProps) => {
 
                       <div>
                         <h4 className="text-sm font-medium">
-                          {relatedPost.title}
+                          {relatedPost?.title}
                         </h4>
                         <p className="text-xs text-gray-600">
                           {new Date(
-                            relatedPost.publishedAt,
+                            relatedPost?.publishedAt,
                           ).toLocaleDateString()}
                         </p>
                       </div>

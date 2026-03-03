@@ -4,7 +4,6 @@ import Image from "next/image";
 
 const Grid = ({services}:{services:Card[]}) => {
 
-  console.log(" {services[0]?.title}", services[0]?.images[0]?.url)
   return (
     <div className="relative space-y-4 sm:space-y-6">
       {/* First Row */}

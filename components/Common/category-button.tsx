@@ -13,8 +13,8 @@ export default function CategoryButton({
   const { replace } = useRouter();
   const pathname = usePathname();
 
-  const currentCategory = searchParams.get("category");
-  console.log(currentCategory);
+  // const currentCategory = searchParams.get("category");
+  // console.log(currentCategory);
   const handleSelect = (value: string) => {
     const params = new URLSearchParams(searchParams);
     params.set("category", value.toLowerCase());
@@ -24,7 +24,7 @@ export default function CategoryButton({
     <button
       type="button"
       onClick={() => handleSelect(value)}
-      className="rounded-full outline outline-1 outline-primary text-primary px-3 py-0.5 text-sm"
+      className="rounded-full outline-1 outline-primary text-primary px-3 py-0.5 text-sm"
     >
       {children}
     </button>

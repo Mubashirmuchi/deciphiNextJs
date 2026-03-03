@@ -73,7 +73,6 @@ const ContactSection = () => {
       service: !formData.service,
     };
 
-    console.log("newErrors:", newErrors);
     setErrors(newErrors);
 
     // Check if there are any errors
