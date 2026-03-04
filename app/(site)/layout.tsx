@@ -1,4 +1,4 @@
-import {Header} from "@/components/Navbar";
+import { Header } from "@/components/Navbar";
 import Footer from "@/components/Common/Footer";
 import { getHome } from "@/data/loaders";
 
@@ -9,7 +9,8 @@ export async function generateMetadata() {
   return {
     metadataBase: new URL("https://deciphi.com"),
     title: seo?.metaTitle || "Deciphi - Cybersecurity Consulting",
-    description: seo?.metaDescription || "Cybersecurity Consulting and Training | Qatar",
+    description:
+      seo?.metaDescription || "Cybersecurity Consulting and Training | Qatar",
     keywords: seo?.keywords,
     robots: seo?.metaRobots || "index, follow",
     alternates: {
@@ -26,7 +27,9 @@ export async function generateMetadata() {
               url: seo.openGraph.ogImage.url,
               width: seo.openGraph.ogImage.width,
               height: seo.openGraph.ogImage.height,
-              alt: seo.openGraph.ogImage.alternativeText || "Deciphi Cyber Security",
+              alt:
+                seo.openGraph.ogImage.alternativeText ||
+                "Deciphi Cyber Security",
             },
           ]
         : [],

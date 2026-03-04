@@ -61,10 +61,10 @@ const ChooseUsSection = ({chooseUs}: {chooseUs: WhyChooseUs }) => {
                 <div className="relative">
                   <div className="absolute -bottom-2 left-0 w-48 sm:w-56 md:w-64 h-16 sm:h-18 md:h-20 bg-accent-orange1 rounded opacity-80 -z-10" />
                   <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-rethink font-medium leading-tight  bg-[#E85744] text-white w-fit p-2">
-                     {chooseUs?.title.titleLine1 || "Trusted"}
+                     {chooseUs?.title?.titleLine1 || "Trusted"}
                   </h2>
                   <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-rethink font-medium leading-tight ">
-                    <span className="text-text-secondary1">  {chooseUs?.title.titleLine2 || "For a Reason"}</span>
+                    <span className="text-text-secondary1">  {chooseUs?.title?.titleLine2 || "For a Reason"}</span>
                     <br />
                   </h2>
                 </div>
