@@ -1,10 +1,25 @@
 import { PageWrapper } from "@/components/Common/PageWrapper";
-import AboutSection from "@/components/homePage/AboutSection";
-import HeroSection from "@/components/homePage/HeroSection";
-import ServicesSection from "@/components/homePage/ServicesSection";
-import Solutions from "@/components/homePage/SolutionsSection";
-import ChooseUsSection from "@/components/homePage/WhyChooseUs";
 import { getHome } from "@/data/loaders";
+import dynamic from "next/dynamic";
+const HeroSection = dynamic(() => import("@/components/homePage/HeroSection"), {
+  ssr: true,
+});
+const AboutSection = dynamic(
+  () => import("@/components/homePage/AboutSection"),
+  { ssr: true },
+);
+const ServicesSection = dynamic(
+  () => import("@/components/homePage/ServicesSection"),
+  { ssr: true },
+);
+const Solutions = dynamic(
+  () => import("@/components/homePage/SolutionsSection"),
+  { ssr: true },
+);
+const ChooseUsSection = dynamic(
+  () => import("@/components/homePage/WhyChooseUs"),
+  { ssr: true },
+);
 
 export default async function Home() {
   const homePage = await getHome("en");

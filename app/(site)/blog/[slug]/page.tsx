@@ -7,6 +7,7 @@ import { StrapiImage } from "@/components/Common/strapi-image";
 import { PageWrapper } from "@/components/Common/PageWrapper";
 import ShareButtons from "@/components/Common/shareBlog";
 import { ChevronRight, ArrowLeft, Tag, Clock } from "lucide-react";
+import type { PostProps } from "../page";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -22,6 +23,17 @@ type RelatedPost = {
   publishedAt: string;
 };
 
+
+
+export async function generateStaticParams() {
+
+  const posts = await getBlogPosts(1, "", "", "");
+
+  return posts.data.map((post: PostProps) => ({
+    slug: post.slug,
+  }));
+}
+
 const ArticlePage = async ({ params }: PageProps) => {
   const resolveParams = await params;
   const slug = await resolveParams?.slug;
@@ -33,6 +45,8 @@ const ArticlePage = async ({ params }: PageProps) => {
   if (!post) {
     notFound();
   }
+
+
 
   return (
     <PageWrapper>

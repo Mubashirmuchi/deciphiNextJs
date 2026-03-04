@@ -5,7 +5,9 @@ interface ShareButtonsProps {
   slug: string;
 }
 
-const BASE_URL = "https://deciphi.vercel.app/blog";
+// const BASE_URL = "https://deciphi.vercel.app/blog";
+
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://deciphi.vercel.app/blog";
 
 const ShareButtons = ({ title, slug }: ShareButtonsProps) => {
   const url = `${BASE_URL}/${slug}`;
