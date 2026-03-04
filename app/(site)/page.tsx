@@ -1,25 +1,15 @@
 import { PageWrapper } from "@/components/Common/PageWrapper";
 import { getHome } from "@/data/loaders";
+import { Suspense } from "react";
+import HeroSection from "@/components/homePage/HeroSection";
 import dynamic from "next/dynamic";
-const HeroSection = dynamic(() => import("@/components/homePage/HeroSection"), {
-  ssr: true,
-});
-const AboutSection = dynamic(
-  () => import("@/components/homePage/AboutSection"),
-  { ssr: true },
-);
-const ServicesSection = dynamic(
-  () => import("@/components/homePage/ServicesSection"),
-  { ssr: true },
-);
-const Solutions = dynamic(
-  () => import("@/components/homePage/SolutionsSection"),
-  { ssr: true },
-);
-const ChooseUsSection = dynamic(
-  () => import("@/components/homePage/WhyChooseUs"),
-  { ssr: true },
-);
+
+const AboutSection = dynamic(() => import("@/components/homePage/AboutSection"));
+const ServicesSection = dynamic(() => import("@/components/homePage/ServicesSection"));
+const Solutions = dynamic(() => import("@/components/homePage/SolutionsSection"));
+const ChooseUsSection = dynamic(() => import("@/components/homePage/WhyChooseUs"));
+
+export const revalidate = 3600;
 
 export default async function Home() {
   const homePage = await getHome("en");
@@ -36,11 +26,19 @@ export default async function Home() {
       )}
       <PageWrapper>
         <HeroSection hero={homePage?.hero} />
-        <AboutSection about={homePage?.AboutUs} />
-        <ChooseUsSection chooseUs={homePage?.WhyChooseUs} />
-        <ServicesSection ServiceSection={homePage?.ServiceSection} />
-        <Solutions solutionsSection={homePage?.SolutionsSection} />
-      </PageWrapper>{" "}
+        <Suspense fallback={<div className="h-96" />}>
+          <AboutSection about={homePage?.AboutUs} />
+        </Suspense>
+        <Suspense fallback={<div className="h-96" />}>
+          <ChooseUsSection chooseUs={homePage?.WhyChooseUs} />
+        </Suspense>
+        <Suspense fallback={<div className="h-96" />}>
+          <ServicesSection ServiceSection={homePage?.ServiceSection} />
+        </Suspense>
+        <Suspense fallback={<div className="h-96" />}>
+          <Solutions solutionsSection={homePage?.SolutionsSection} />
+        </Suspense>
+      </PageWrapper>
     </main>
   );
 }

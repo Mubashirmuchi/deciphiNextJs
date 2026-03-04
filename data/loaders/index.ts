@@ -9,7 +9,6 @@ export async function getBlogPosts(
 ) {
   const filters: Record<string, unknown> = {};
 
-  // 🔎 Search
   if (queryString) {
     filters.$or = [
       { title: { $containsi: queryString } },
@@ -17,14 +16,12 @@ export async function getBlogPosts(
     ];
   }
 
-  // 🏷 Category filter
   if (category) {
     filters.category = {
       name: { $eqi: category },
     };
   }
 
-  // ❌ Exclude current post (for related)
   if (slug) {
     filters.slug = { $ne: slug };
   }
@@ -49,9 +46,10 @@ export async function getBlogPosts(
     { encodeValuesOnly: true }
   );
 
-  const res = await strapiFetch(`/api/posts?${query}`);
+  const res = await strapiFetch(`/api/posts?${query}`, {
+    next: { revalidate: 1800 }
+  });
 
-  // ✅ If related mode and no data → fallback
   if (slug && (!res?.data || res.data.length === 0)) {
     const fallbackQuery = qs.stringify(
       {
@@ -66,7 +64,9 @@ export async function getBlogPosts(
       { encodeValuesOnly: true }
     );
 
-    const fallbackRes = await strapiFetch(`/api/posts?${fallbackQuery}`);
+    const fallbackRes = await strapiFetch(`/api/posts?${fallbackQuery}`, {
+      next: { revalidate: 1800 }
+    });
     return fallbackRes?.data || [];
   }
 
@@ -83,7 +83,9 @@ export async function getCategories() {
       encodeValuesOnly: true,
     }
   );
-  const res = await strapiFetch(`/api/categories?${query}`);
+  const res = await strapiFetch(`/api/categories?${query}`, {
+    next: { revalidate: 3600 }
+  });
 
   return res?.data || [];
 }
@@ -117,7 +119,9 @@ export async function getBlogPostBySlug(
     }
   );
 
-  const res = await strapiFetch(`/api/posts?${query}`);
+  const res = await strapiFetch(`/api/posts?${query}`, {
+    next: { revalidate: 1800 }
+  });
 
   return res?.data?.[0] || null;
 }
@@ -152,14 +156,16 @@ export async function getService(locale: string) {
       },
     },
     {
-      encodeValuesOnly: true, // important
+      encodeValuesOnly: true,
     },
   );
 
-  const res = await strapiFetch(`/api/service-page?${query}`);
+  const res = await strapiFetch(`/api/service-page?${query}`, {
+    next: { revalidate: 3600 }
+  });
 
   if (!res?.data && locale !== "en") {
-    return getService("en"); // fallback
+    return getService("en");
   }
 
   return res?.data || null;
@@ -233,14 +239,16 @@ export async function getHome(locale: string) {
       },
     },
     {
-      encodeValuesOnly: true, // important
+      encodeValuesOnly: true,
     },
   );
 
-  const res = await strapiFetch(`/api/home-page?${query}`);
+  const res = await strapiFetch(`/api/home-page?${query}`, {
+    next: { revalidate: 3600 }
+  });
 
   if (!res?.data && locale !== "en") {
-    return getHome("en"); // fallback
+    return getHome("en");
   }
 
   return res?.data || null;
