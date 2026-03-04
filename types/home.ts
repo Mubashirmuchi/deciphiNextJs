@@ -96,7 +96,7 @@ export interface WhyChooseUs {
   description: string;
   Cta: CTA;
   cardImage: File;
-  BulletPoint: BulletPoint[];
+  BulletPointsInsideImage: BulletPoint[];
 }
 // Services Section
 

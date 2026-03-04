@@ -3,9 +3,11 @@ import { getBlogPostBySlug, getBlogPosts } from "@/data/loaders";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { MarkdownText } from "@/components/Common/markdown-text";
+import  BlockRendererClient  from "@/components/Common/markdown-text";
 import { StrapiImage } from "@/components/Common/strapi-image";
 import { PageWrapper } from "@/components/Common/PageWrapper";
+
+
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -38,11 +40,13 @@ const ArticlePage = async ({ params }: PageProps) => {
     notFound();
   }
 
+  console.log("post.content",post.content)
+
   return (
   
   
       <PageWrapper>
-      <div className="relative h-[60vh] w-full">
+      <article className="relative h-[60vh] w-full">
         {
        
           post.image && (
@@ -63,8 +67,8 @@ const ArticlePage = async ({ params }: PageProps) => {
             </h1>
 
             <div className="flex items-center gap-4 text-sm">
-              <span>Mubashir M</span>
-              <span>•</span>
+              {/* <span>Mubashir M</span>
+              <span>•</span> */}
               <time>
                 {new Date(post.publishedAt).toLocaleDateString("en-US", {
                   year: "numeric",
@@ -75,7 +79,7 @@ const ArticlePage = async ({ params }: PageProps) => {
             </div>
           </div>
         </div>
-      </div>
+      </article>
 
       {/* Main Layout */}
       <div className="bg-gray-50 min-h-screen">
@@ -93,17 +97,17 @@ const ArticlePage = async ({ params }: PageProps) => {
 
             {/* Article Content */}
             {post.content && (
-              // <div className="container mx-auto max-w-4xl text-base leading-7">
-              <MarkdownText content={post.content} />
-              // </div>
+              <BlockRendererClient content={post.content} />
+          
             )}
+            
             {post.category && (
               <div className="mt-12 pt-8 border-t">
                 <h3 className="text-lg font-semibold mb-4">Tags</h3>
 
                 <div className="flex flex-wrap gap-2">
                   <span className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">
-                    #{post.category.name}
+                    #{post?.category?.name}
                   </span>
                 </div>
               </div>
@@ -209,4 +213,5 @@ const ArticlePage = async ({ params }: PageProps) => {
 };
 
 export default ArticlePage;
+
 

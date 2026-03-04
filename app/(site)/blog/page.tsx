@@ -85,7 +85,7 @@ export default async function BlogRoute({ searchParams }: PageProps) {
               posts.map((item: PostProps) => {
                 return (
                   <Link href={"/blog/" + item.slug} key={item.documentId}>
-                    <Card className="h-full shadow-lg border-none">
+                    <Card className="h-full shadow-lg border-none group cursor-pointer transition-all duration-300 hover:shadow-xl">
                       <CardContent className="flex h-full flex-col items-start gap-5 px-0">
                         {item.image && (
                           <div className="relative h-52 w-full">
@@ -98,11 +98,11 @@ export default async function BlogRoute({ searchParams }: PageProps) {
                           </div>
                         )}
                         <div className="flex flex-1 flex-col gap-4 px-5">
-                          <h4 className="text-lg font-semibold">
+                          <h4 className="text-lg font-semibold transition-colors duration-300 group-hover:text-blue-600 group-hover:underline">
                             {item.title}title
                           </h4>
-                          <p className="mb-auto text-muted-foreground">
-                            {item.description}desct
+                          <p className="mb-auto text-muted-foreground ">
+                            {item.description}
                           </p>
                           <div className="flex items-center gap-3">
                             <span className="rounded-full  outline-1 outline-primary text-primary px-3 py-0.5 text-sm">

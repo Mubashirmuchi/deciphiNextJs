@@ -10,10 +10,12 @@ export async function CategorySelect() {
     <div className="w-full flex gap-2 justify-center items-center">
       <CategoryButton value="">all</CategoryButton>
       {categories.map((category: { id: number; name: string }) => (
-        <CategoryButton key={category.id} value={category.name}>
+        <CategoryButton  key={category.id} value={category.name}>
           {category.name}
         </CategoryButton>
       ))}
     </div>
   );
 }
+
+
