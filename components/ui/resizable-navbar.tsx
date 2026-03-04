@@ -133,7 +133,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
 export const NavItems = ({  className }: NavItemsProps) => {
   const pathname = usePathname();
  const   menu = [
-    { title: "About", url: "#about-us" },
+    { title: "About", url: "/#about-us" },
     {
       title: "Services",
       url: "#",
@@ -181,31 +181,31 @@ export const NavItems = ({  className }: NavItemsProps) => {
     },
  {
   title: "Solutions",
-  url: "#",
+  url: "/",
   items: [
     {
       title: "Application security solutions",
       description: "Secure apps. Stop threats. Ship with confidence.",
       icon: <Zap className="size-5 shrink-0" />,
-      url: "#",
+      url: "/",
     },
     {
       title: "Endpoint security",
       description: "Protect every device, everywhere.",
       icon: <Sunset className="size-5 shrink-0" />,
-      url: "#",
+      url: "/",
     },
     {
       title: "Internet of things (IoT) security",
       description: "Defend connected devices from cyber risks.",
       icon: <Trees className="size-5 shrink-0" />,
-      url: "#",
+      url: "/",
     },
     {
       title: "Data Security Solutions",
       description: "Keep sensitive data locked and compliant.",
       icon: <Book className="size-5 shrink-0" />,
-      url: "#",
+      url: "/",
     },
   ],
 },
