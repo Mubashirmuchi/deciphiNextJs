@@ -308,30 +308,19 @@ const renderMenuItem = (item: MenuItem) => {
     );
   }
 
-  const handleClick = (e: React.MouseEvent) => {
-    if (item.url.startsWith('#')) {
-      e.preventDefault();
-      window.location.href = '/' + item.url;
-    }
-  };
 
   return (
     <NavigationMenuItem key={item.title} className="font-bold  text-md hover:text-white/50">
-      <NavigationMenuLink
-        href={item.url}
-        onClick={handleClick}
-        className="group text-md !\hover:text-white/50 text-white font-bold  text-md  inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2   transition-colors hover:bg-muted hover:text-accent-foreground"
-      >
-        {item.title}
-      </NavigationMenuLink>
+      <Link className="group inline-flex px-4 py-2 " href={item.url}>{item.title}</Link>
     </NavigationMenuItem>
+
   );
 };
 
 const SubMenuLink = ({ item }: { item: MenuItem }) => {
   return (
-    <a
-      className="flex min-w-80 flex-row gap-4 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none hover:bg-muted hover:text-accent-foreground"
+    <Link
+      className="flex  min-w-80 flex-row gap-4 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none hover:bg-muted hover:text-accent-foreground"
       href={item.url}
     >
       <div className="text-foreground">{item.icon}</div>
@@ -343,6 +332,6 @@ const SubMenuLink = ({ item }: { item: MenuItem }) => {
           </p>
         )}
       </div>
-    </a>
+    </Link>
   );
 };
