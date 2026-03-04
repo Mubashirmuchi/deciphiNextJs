@@ -1,11 +1,7 @@
 @import "tailwindcss";
 @import "shadcn/tailwind.css";
-
-
-@import "tailwindcss";
 @import "tw-animate-css";
 @import "@tailwindcss/typography";
-/* plugins: [require('@tailwindcss/typography')] */
 
 
 html,body {
