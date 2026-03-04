@@ -6,11 +6,9 @@ import BackgroundVideo from "../BackgroundVideo";
 import Image from "next/image";
 import type { HeroSection } from "@/types/home";
 
-
-
 const HeroSection = ({ hero }: HeroSection) => {
-  const videoUrl = hero?.backgroundVideo?.url
-  const imgUrl = hero?.backgroundImage?.url
+  const videoUrl = hero?.backgroundVideo?.url;
+  const imgUrl = hero?.backgroundImage?.url;
 
   return (
     <section
@@ -35,8 +33,7 @@ const HeroSection = ({ hero }: HeroSection) => {
       </div>
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/25 -z-10" />
-
+      <div className="absolute inset-0 -z-10 bg-black/70 lg:bg-black/25" />
       {/* Content Overlay */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
         <div className="space-y-6 sm:space-y-8">

@@ -33,14 +33,9 @@ export async function getBlogPosts(
     {
       filters,
       pagination: slug
-        ? { page: 1, pageSize: 2 } // related mode
-        : { page, pageSize: 8 },   // normal blog page
-      fields: [
-        "title",
-        "description",
-        "slug",
-        "publishedAt",
-      ],
+        ? { page: 1, pageSize: 2 }
+        : { page, pageSize: 8 },
+      fields: ["title", "description", "slug", "publishedAt"],
       populate: {
         image: {
           fields: ["url", "alternativeText"],
@@ -56,8 +51,28 @@ export async function getBlogPosts(
 
   const res = await strapiFetch(`/api/posts?${query}`);
 
+  // ✅ If related mode and no data → fallback
+  if (slug && (!res?.data || res.data.length === 0)) {
+    const fallbackQuery = qs.stringify(
+      {
+        pagination: { page: 1, pageSize: 2 },
+        fields: ["title", "description", "slug", "publishedAt"],
+        populate: {
+          image: { fields: ["url", "alternativeText"] },
+          category: { fields: ["name"] },
+        },
+        sort: ["createdAt:desc"],
+      },
+      { encodeValuesOnly: true }
+    );
+
+    const fallbackRes = await strapiFetch(`/api/posts?${fallbackQuery}`);
+    return fallbackRes?.data || [];
+  }
+
   return slug ? res?.data || [] : res;
 }
+
 export async function getCategories() {
   const query = qs.stringify(
     {

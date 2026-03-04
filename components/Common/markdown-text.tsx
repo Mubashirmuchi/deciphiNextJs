@@ -5,7 +5,7 @@ import type { Element } from "hast";
 
 const MarkdownRenderer = ({ content }: { content: string }) => {
   return (
-    <div className="markdown-body">
+    <div className="markdown-body p-0!">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{

@@ -1,19 +1,18 @@
-import { LinkedinIcon, TwitterIcon } from "lucide-react";
 import { getBlogPostBySlug, getBlogPosts } from "@/data/loaders";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import  BlockRendererClient  from "@/components/Common/markdown-text";
+import BlockRendererClient from "@/components/Common/markdown-text";
 import { StrapiImage } from "@/components/Common/strapi-image";
 import { PageWrapper } from "@/components/Common/PageWrapper";
-
-
+import ShareButtons from "@/components/Common/shareBlog";
+import { ChevronRight, ArrowLeft, Tag, Clock } from "lucide-react";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-type ReatedPost = {
+type RelatedPost = {
   slug: string;
   title: string;
   image: {
@@ -25,49 +24,46 @@ type ReatedPost = {
 
 const ArticlePage = async ({ params }: PageProps) => {
   const resolveParams = await params;
-
   const slug = await resolveParams?.slug;
 
-
-
   const post = await getBlogPostBySlug(slug);
-
   const categoryName = post?.category?.name || "";
-
   const relatedPosts = await getBlogPosts(1, "", categoryName, slug);
 
   if (!post) {
     notFound();
   }
 
-
   return (
-  
-  
-      <PageWrapper>
-      <article className="relative h-[60vh] w-full">
-        {
-       
-          post.image && (
-            <StrapiImage
-              alt={post.image.alternativeText || ""}
-              src={post.image.url}
-              fill
-              className="object-cover rounded-t-lg"
-            />
-          )
-        }
+    <PageWrapper>
+      {/* Hero Section */}
+      <article className="relative h-[50vh] min-h-80 md:h-[60vh] w-full overflow-hidden">
+        {post.image && (
+          <StrapiImage
+            alt={post.image.alternativeText || ""}
+            src={post.image.url}
+            fill
+            className="object-cover"
+            priority
+          />
+        )}
+        <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-black/10" />
 
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="absolute inset-0 flex items-end">
-          <div className="w-full max-w-7xl mx-auto px-4 pb-12 text-white">
-            <h1 className="text-4xl md:text-6xl font-bold mb-4 max-w-4xl">
+        <div className="absolute inset-0 flex flex-col justify-end">
+          <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 pb-8 md:pb-12 text-white">
+            {/* Category badge */}
+            {post.category && (
+              <span className="inline-block mb-3 px-3 py-1 bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs font-semibold uppercase tracking-widest rounded-full">
+                {post.category.name}
+              </span>
+            )}
+
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-3 max-w-3xl leading-tight">
               {post.title}
             </h1>
 
-            <div className="flex items-center gap-4 text-sm">
-              {/* <span>Mubashir M</span>
-              <span>•</span> */}
+            <div className="flex items-center gap-2 text-white/70 text-sm">
+              <Clock className="size-3.5" />
               <time>
                 {new Date(post.publishedAt).toLocaleDateString("en-US", {
                   year: "numeric",
@@ -80,113 +76,89 @@ const ArticlePage = async ({ params }: PageProps) => {
         </div>
       </article>
 
-      {/* Main Layout */}
+      {/* Body */}
       <div className="bg-gray-50 min-h-screen">
-        <div className="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Main Content */}
-          <div className="lg:col-span-2 bg-white rounded-lg shadow-sm p-8">
-            {/* Breadcrumb */}
-            <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-8">
-              <Link href="/">Home</Link>
-              <span>/</span>
-              <Link href="/blog">Blog</Link>
-              <span>/</span>
-              <span className="text-gray-900">{post.title}</span>
-            </nav>
+        {/* Breadcrumb */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <nav className="flex items-center gap-1.5 text-xs text-gray-500 py-3 overflow-x-auto whitespace-nowrap">
+            <Link href="/" className="hover:text-gray-800 transition-colors shrink-0">Home</Link>
+            <ChevronRight className="size-3.5 shrink-0" />
+            <Link href="/blog" className="hover:text-gray-800 transition-colors shrink-0">Blog</Link>
+            <ChevronRight className="size-3.5 shrink-0" />
+            <span className="text-gray-800 font-medium truncate">{post.title}</span>
+          </nav>
+        </div>
 
-            {/* Article Content */}
+        {/* Main Grid */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-16 grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-6 lg:gap-8">
+
+          {/* Article Content */}
+          <main className="bg-white rounded-xl shadow-sm border border-gray-100 p-5 sm:p-8 lg:p-10 min-w-0">
             {post.content && (
-              <BlockRendererClient content={post.content} />
-          
+              <div className="prose prose-gray prose-sm sm:prose-base max-w-none
+                prose-headings:font-bold prose-headings:text-gray-900
+                prose-p:text-gray-700 prose-p:leading-relaxed
+                prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline
+                prose-img:rounded-lg prose-img:shadow-md
+                prose-code:text-sm prose-pre:rounded-lg">
+                <BlockRendererClient content={post.content} />
+              </div>
             )}
-            
-            {post.category && (
-              <div className="mt-12 pt-8 border-t">
-                <h3 className="text-lg font-semibold mb-4">Tags</h3>
 
-                <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">
-                    #{post?.category?.name}
+            {/* Tags */}
+            {post.category && (
+              <div className="mt-10 pt-6 border-t border-gray-100">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <Tag className="size-4 text-gray-400" />
+                  <span className="px-3 py-1 bg-gray-100 hover:bg-gray-200 transition-colors text-gray-700 text-sm rounded-full cursor-default">
+                    #{post.category.name}
                   </span>
                 </div>
               </div>
             )}
 
             {/* Share */}
-            <div className="mt-8 pt-8 border-t">
-              <h3 className="text-lg font-semibold mb-4">Share this article</h3>
-              <div className="flex gap-4">
-                <a
-                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
-                    post.title,
-                  )}&url=${encodeURIComponent(
-                    `https://deciphi.com/blog/${post.slug}`,
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  //   className="p-2 rounded-full border border-gray-700"
-                >
-                  <TwitterIcon />
-                </a>
-
-                <a
-                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-                    `https://deciphi.com/blog/${post.slug}`,
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  //   className="p-2 rounded-full border border-gray-700"
-                >
-                  <LinkedinIcon />
-                </a>
-              </div>
+            <div className="mt-6 pt-6 border-t border-gray-100">
+              <p className="text-sm font-semibold text-gray-800 mb-3">Share this article</p>
+              <ShareButtons title={post.title} slug={post.slug} />
             </div>
-          </div>
+          </main>
 
           {/* Sidebar */}
-          <div className="space-y-8">
-            {/* Author */}
-            {/* <div className="bg-white rounded-lg shadow-sm p-6">
-              <h3 className="text-lg font-semibold mb-4">
-                About the Author
-              </h3>
-              <p className="text-sm text-gray-700">
-                Mubashir M is a cybersecurity expert specializing in
-                enterprise security and digital transformation.
-              </p>
-            </div> */}
+          <aside className="flex flex-col gap-5">
 
             {/* Related Posts */}
             {relatedPosts.length > 0 && (
-              <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold mb-4">Related Articles</h3>
+              <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-5">
+                <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-4">
+                  Related Articles
+                </h3>
 
-                <div className="space-y-4">
-
-
-                  {relatedPosts.map((relatedPost:ReatedPost) => (
+                <div className="flex flex-col gap-4">
+                  {relatedPosts.map((relatedPost: RelatedPost) => (
                     <Link
-                      key={relatedPost?.slug}
-                      href={`/blog/${relatedPost?.slug}`}
-                      className="flex gap-3"
+                      key={relatedPost.slug}
+                      href={`/blog/${relatedPost.slug}`}
+                      className="group flex gap-3 items-start"
                     >
-                      <div className="relative w-20 h-16 rounded-lg overflow-hidden">
+                      <div className="relative w-18 h-13.5 rounded-lg overflow-hidden shrink-0 bg-gray-100">
                         <Image
-                          src={relatedPost?.image?.url || ""}
-                          alt={relatedPost?.image?.alt ||""}
+                          src={relatedPost.image?.url || ""}
+                          alt={relatedPost.image?.alt || ""}
                           fill
-                          className="object-cover"
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                       </div>
-
-                      <div>
-                        <h4 className="text-sm font-medium">
-                          {relatedPost?.title}
+                      <div className="min-w-0">
+                        <h4 className="text-sm font-medium text-gray-800 group-hover:text-blue-600 transition-colors line-clamp-2 leading-snug">
+                          {relatedPost.title}
                         </h4>
-                        <p className="text-xs text-gray-600">
-                          {new Date(
-                            relatedPost?.publishedAt,
-                          ).toLocaleDateString()}
+                        <p className="text-xs text-gray-400 mt-1">
+                          {new Date(relatedPost.publishedAt).toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                          })}
                         </p>
                       </div>
                     </Link>
@@ -195,16 +167,22 @@ const ArticlePage = async ({ params }: PageProps) => {
               </div>
             )}
 
-            {/* Back Button */}
-            <div className="bg-white rounded-lg shadow-sm p-6">
-              <Link
-                href="/blog"
-                className="block w-full text-center px-4 py-3 bg-gray-900 text-white rounded-lg"
-              >
-                ← Back to Blog
-              </Link>
-            </div>
-          </div>
+            {/* Back to Blog */}
+            <Link
+              href="/blog"
+              className="flex items-center justify-center gap-2 w-full px-4 py-3  bg-[linear-gradient(113deg,#ac1b1b_0%,#721212_50%,#460a0a_100%)]   hover:bg-[linear-gradient(113deg,#c62828_0%,#8b1c1c_50%,#5a0d0d_100%)] active:scale-[0.98] transition-all text-white text-sm font-medium rounded-xl shadow-sm
+              
+           
+            
+              "
+            >
+              <ArrowLeft className="size-4" />
+              Back to Blog
+            </Link>
+
+
+            
+          </aside>
         </div>
       </div>
     </PageWrapper>

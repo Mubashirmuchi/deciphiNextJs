@@ -19,7 +19,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import React, { useRef, useState } from "react";
-import { Book, Menu, Sunset, Trees, Zap } from "lucide-react";
+import { Book, Sunset, Trees, Zap } from "lucide-react";
 
 export interface NavbarProps {
   children: React.ReactNode;
@@ -42,27 +42,6 @@ interface MenuItem {
   items?: MenuItem[];
 }
 
-interface Navbar1Props {
-  className?: string;
-  logo?: {
-    url: string;
-    src: string;
-    alt: string;
-    title: string;
-    className?: string;
-  };
-  menu?: MenuItem[];
-  auth?: {
-    login: {
-      title: string;
-      url: string;
-    };
-    signup: {
-      title: string;
-      url: string;
-    };
-  };
-}
 
 
 interface NavItemsProps {
@@ -140,7 +119,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         minWidth: "800px",
       }}
       className={cn(
-        "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent px-4 py-2 lg:flex dark:bg-transparent",
+        "relative z-60 mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent px-4 py-2 lg:flex dark:bg-transparent",
         visible && "bg-neutral-950/80 dark:bg-neutral-950/80",
 
         className
@@ -151,8 +130,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
   );
 };
 
-export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
-  const [hovered, setHovered] = useState<number | null>(null);
+export const NavItems = ({  className }: NavItemsProps) => {
   const pathname = usePathname();
  const   menu = [
     { title: "About", url: "#about-us" },
@@ -237,10 +215,10 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
     },
   ]
   return (
-    <motion.div onMouseLeave={() => setHovered(null)}>
+    <motion.div >
       <ul
         className={cn(
-          "absolute  inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium text-zinc-600 transition duration-200 hover:text-zinc-800 lg:flex lg:space-x-2",
+          "absolute  inset-0 hidden rounded-full flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium text-zinc-600 transition duration-200 hover:text-zinc-800 lg:flex lg:space-x-2",
           `${pathname == "/" ? "" : "bg-neutral-950/80 rounded-full"}`,
           className
         )}
@@ -267,7 +245,7 @@ export const NavbarLogo = () => {
         src={"/img_frame_38.svg"}
         alt="logo"
         width={135}
-        height={90}
+        height={31}
       />
     </Link>
   );
