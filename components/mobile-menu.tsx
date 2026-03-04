@@ -5,7 +5,7 @@ import {
   AnimatePresence,
   useMotionValueEvent,
   useScroll,
-} from "framer-motion";
+} from "motion/react";
 import React, { useRef, useState } from "react";
 import { NavbarLogo, NavbarProps } from "./ui/resizable-navbar";
 import { cn } from "@/lib/utils";

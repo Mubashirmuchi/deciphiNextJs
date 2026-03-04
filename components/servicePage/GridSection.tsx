@@ -31,8 +31,8 @@ const iconMap = {
 
 
 const GridSection = ({ cardImage, accordian }: GridSectionProps) => {
-  const getIcon = (iconName: string) =>
-    iconMap[iconName as keyof typeof iconMap] ?? 'Shield';
+  const getIcon = (iconName: string | number | symbol) =>
+    iconMap[String(iconName) as keyof typeof iconMap] ?? Shield;
 
   return (
     <div className="parent grid grid-cols-1 md:grid-cols-3 grid-rows-3 md:max-h-[70vh]">
@@ -40,7 +40,7 @@ const GridSection = ({ cardImage, accordian }: GridSectionProps) => {
       {/* Card 1 */}
       <div className="p-2 flex flex-col bg-neutral-100">
         <BentoGridItem
-          icon={getIcon(accordian[0]?.icon)}
+          icon={getIcon(String(accordian[0]?.icon))}
           title={accordian[0]?.title}
           description={accordian[0]?.description}
         />

@@ -1,4 +1,4 @@
-import { IconMap } from "@tabler/icons-react";
+import { LucideIcon } from "lucide-react";
 
 export interface CTA {
   id: number;
@@ -41,8 +41,7 @@ export interface BulletPoint {
 export interface AccordianItem {
   id: number;
   title: string;
-  // icon:string 
-   icon: keyof typeof IconMap; 
+  icon: string;
   description: string;
 
 }

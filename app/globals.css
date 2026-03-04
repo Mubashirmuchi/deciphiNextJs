@@ -1,7 +1,9 @@
 @import "tailwindcss";
-@import "shadcn/tailwind.css";
-@import "tw-animate-css";
 
+@theme {
+  --font-geist-sans: "Geist", sans-serif;
+  --font-geist-mono: "Geist Mono", monospace;
+}
 
 html,body {
   scroll-behavior: smooth;
