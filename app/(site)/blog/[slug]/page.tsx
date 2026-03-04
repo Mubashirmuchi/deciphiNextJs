@@ -40,7 +40,6 @@ const ArticlePage = async ({ params }: PageProps) => {
     notFound();
   }
 
-  console.log("post.content",post.content)
 
   return (
   
