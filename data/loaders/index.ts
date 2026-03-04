@@ -32,7 +32,7 @@ export async function getBlogPosts(
       pagination: slug
         ? { page: 1, pageSize: 2 }
         : { page, pageSize: 8 },
-      fields: ["title", "description", "slug", "publishedAt"],
+      fields: ["title", "description", "slug", "publishedAt","updatedAt"],
       populate: {
         image: {
           fields: ["url", "alternativeText"],

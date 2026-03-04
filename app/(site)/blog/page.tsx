@@ -46,6 +46,7 @@ export default async function BlogRoute({ searchParams }: PageProps) {
   const category = resolveParams?.category ?? "";
 
   const { data, meta } = await getBlogPosts(currentPage, query, category);
+  console.log("datadata",data)
 
   const total = Number(meta?.pagination?.pageCount);
   const totalData = Number(meta?.pagination?.total);
