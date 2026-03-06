@@ -5,9 +5,18 @@
   --font-geist-mono: "Geist Mono", monospace;
 }
 
-html,body {
+html {
   scroll-behavior: smooth;
-   -webkit-overflow-scrolling: touch;
+  scroll-padding-top: 80px;
+  scroll-snap-type: y proximity;
+}
+
+body {
+  -webkit-overflow-scrolling: touch;
+}
+
+main section {
+  scroll-snap-align: start;
 }
 
 :root  {
@@ -84,3 +93,9 @@ html,body {
     @apply bg-background text-foreground;
   }
 } */
+
+
+.box-decoration-clone {
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}

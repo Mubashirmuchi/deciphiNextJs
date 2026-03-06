@@ -7,7 +7,7 @@ import type { WhyChooseUs } from "@/types/home";
 
 const ChooseUsSection = ({chooseUs}: {chooseUs: WhyChooseUs }) => {
   return (
-    <section id="why-choose-us" className="w-full  pb-12">
+    <section id="why-choose-us" className="w-full ">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16">
           {/* Left Column - Image and Features */}

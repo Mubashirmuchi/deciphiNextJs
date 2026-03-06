@@ -1,3 +1,21 @@
+// import CyberHero from '@/components/servicePage/DetailPage'
+// import WayfinderSection from '@/components/servicePage/Detaipagesection2'
+// import ServicesGrid from '@/components/servicePage/Servicestypes'
+// import React from 'react'
+
+// const Page = () => {
+//   return (
+//     <div>
+//       <CyberHero/>
+//       <WayfinderSection/>
+//       <ServicesGrid/>
+//     </div>
+//   )
+// }
+
+// export default Page
+
+
 import { PageWrapper } from '@/components/Common/PageWrapper';
 // import ChooseUsSection from '@/components/homePage/WhyChooseUs'
 import ConsultingPage from '@/components/servicePage/HeroSection'

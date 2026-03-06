@@ -1,20 +1,19 @@
 import { Card } from "@/types/home";
 import Image from "next/image";
 
-
-const Grid = ({services}:{services:Card[]}) => {
-
+const Grid = ({ services }: { services: Card[] }) => {
   return (
     <div className="relative space-y-4 sm:space-y-6">
       {/* First Row */}
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 sm:gap-6">
         {/* Cybersecurity Consulting */}
-        <div className="lg:col-span-2 bg-bg-card1 border-2 bg-(--color-neutral-3) border-gray-100 rounded-lg p-6 sm:p-8">
+        <div className=" lg:col-span-2 bg-bg-card1 border-2 bg-(--color-neutral-3) border-gray-100 rounded-lg p-6 sm:p-8">
           <div className="space-y-6 sm:space-y-8">
             <div className="space-y-4">
               <div className="flex justify-between items-start pb-6 border-b-2 border-gray-100">
                 <h3 className="text-xl sm:text-2xl lg:text-3xl font-rethink font-medium text-text-secondary1 flex-1 pr-4">
-               {services[0]?.title.split(" ")[0]} <br /> {services[0]?.title.split(" ")[1]}
+                  {services[0]?.title.split(" ")[0]} <br />{" "}
+                  {services[0]?.title.split(" ")[1]}
                 </h3>
                 <div className="bg-[#D5C056] rounded-full p-2 shrink-0">
                   <svg
@@ -31,13 +30,15 @@ const Grid = ({services}:{services:Card[]}) => {
                 </div>
               </div>
               <p className="text-base sm:text-lg font-arial leading-relaxed text-text-muted1">
-              {services[0]?.description}
+                {services[0]?.description}
               </p>
             </div>
             <div className="mt-auto">
               <Image
-                    src={services[0]?.images[0]?.url} 
-                    alt={services[0]?.images[0].alternativeText || "Consulting Service"}
+                src={services[0]?.images[0]?.url}
+                alt={
+                  services[0]?.images[0].alternativeText || "Consulting Service"
+                }
                 width={344}
                 height={148}
                 className="w-full rounded"
@@ -52,16 +53,14 @@ const Grid = ({services}:{services:Card[]}) => {
             <div className="space-y-4">
               <div className="flex justify-between items-start pb-6 border-b-2 border-gray-100">
                 <h3 className="whitespace-pre-line text-xl sm:text-2xl lg:text-3xl font-rethink font-medium text-text-secondary1 flex-1 pr-4">
-
-  {services[1]?.title.split(" ").slice(0, -1).join(" ")}
-  <br />
-  {services[1]?.title.split(" ").slice(-1)}
-
-             </h3>
+                  {services[1]?.title.split(" ").slice(0, -1).join(" ")}
+                  <br />
+                  {services[1]?.title.split(" ").slice(-1)}
+                </h3>
                 <div className="bg-[#5BD661] rounded-full p-2 shrink-0">
                   <svg
-                  height="32"
-                  fill="white"
+                    height="32"
+                    fill="white"
                     width="32"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 32 32"
@@ -81,7 +80,10 @@ const Grid = ({services}:{services:Card[]}) => {
               <div className="flex-1">
                 <Image
                   src={services[1]?.images[0]?.url || ""}
-                  alt={services[1]?.images[0]?.alternativeText || "Assessment Service"}
+                  alt={
+                    services[1]?.images[0]?.alternativeText ||
+                    "Assessment Service"
+                  }
                   width={354}
                   height={220}
                   className="w-full rounded"
@@ -90,9 +92,11 @@ const Grid = ({services}:{services:Card[]}) => {
 
               <div className="w-full sm:w-40">
                 <Image
-                 src={services[1]?.images[1]?.url} 
-                    alt={services[1]?.images[1]?.alternativeText || "Assessment Service"}
-               
+                  src={services[1]?.images[1]?.url}
+                  alt={
+                    services[1]?.images[1]?.alternativeText ||
+                    "Assessment Service"
+                  }
                   width={158}
                   height={226}
                   className="w-full h-full  rounded object-bottom-right"
@@ -121,20 +125,20 @@ const Grid = ({services}:{services:Card[]}) => {
                 </svg>
               </div>
               <h3 className="text-xl sm:text-2xl lg:text-3xl font-rethink font-medium text-text-secondary1">
-             {  services[2]?.title.split(" ")[0]} <br /> {services[2]?.title.split(" ")[1]}
+                {services[2]?.title.split(" ")[0]} <br />{" "}
+                {services[2]?.title.split(" ")[1]}
               </h3>
             </div>
             <p className="text-base sm:text-lg font-arial leading-relaxed text-text-muted1">
-           { services[2]?.description}
+              {services[2]?.description}
             </p>
           </div>
           <div className="w-full">
             <Image
-           
-
-                   src={services[2]?.images[0]?.url} 
-                    alt={services[2]?.images[0]?.alternativeText || "Training Service"}
-               
+              src={services[2]?.images[0]?.url}
+              alt={
+                services[2]?.images[0]?.alternativeText || "Training Service"
+              }
               width={392}
               height={266}
               className="w-full"
@@ -151,7 +155,8 @@ const Grid = ({services}:{services:Card[]}) => {
             <div className="space-y-4">
               <div className="flex justify-between items-start pb-6 border-b-2 border-gray-100">
                 <h3 className="text-lg sm:text-xl lg:text-2xl font-rethink font-medium text-text-secondary1 flex-1 pr-4">
-                  {  services[3]?.title.split(" ")[0]} <br /> {services[3]?.title.split(" ")[1]}
+                  {services[3]?.title.split(" ")[0]} <br />{" "}
+                  {services[3]?.title.split(" ")[1]}
                 </h3>
                 <div className="bg-[#58C9D6] rounded-full  shrink-0 p-2">
                   <svg
@@ -169,15 +174,18 @@ const Grid = ({services}:{services:Card[]}) => {
                 </div>
               </div>
               <p className="text-sm sm:text-base font-arial leading-relaxed text-text-muted1">
-               { services[3]?.description}
+                {services[3]?.description}
               </p>
             </div>
             <div className="mt-auto">
-                {/* bg-gradient-to-b */}
+              {/* bg-gradient-to-b */}
               <div className="bg-linear-to-b from-red-600 to-red-800  rounded p-4">
                 <Image
                   src={services[3]?.images[0]?.url}
-                  alt={services[3]?.images[0]?.alternativeText || "Integration Service"}
+                  alt={
+                    services[3]?.images[0]?.alternativeText ||
+                    "Integration Service"
+                  }
                   width={300}
                   height={92}
                   className="w-full"
@@ -193,7 +201,8 @@ const Grid = ({services}:{services:Card[]}) => {
             <div className="space-y-4">
               <div className="flex justify-between items-start pb-6 border-b-2 border-gray-100">
                 <h3 className="text-lg sm:text-xl lg:text-2xl font-rethink font-medium text-text-secondary1 flex-1 pr-4">
-                  {  services[4]?.title.split(" ")[0]} <br /> {services[4]?.title.split(" ")[1]}
+                  {services[4]?.title.split(" ")[0]} <br />{" "}
+                  {services[4]?.title.split(" ")[1]}
                 </h3>
                 <div className="bg-red-500 rounded-full p-2 shrink-0">
                   <svg
@@ -215,16 +224,13 @@ const Grid = ({services}:{services:Card[]}) => {
                 </div>
               </div>
               <p className="text-sm sm:text-base font-arial leading-relaxed text-text-muted1">
-                { services[4]?.description}
+                {services[4]?.description}
               </p>
             </div>
             <div className="mt-auto space-y-3">
-           
               <Image
-                src={
-                  services[4]?.images[0]?.url}
+                src={services[4]?.images[0]?.url}
                 alt={services[4]?.images[0]?.alternativeText || "OT Service 1"}
-           
                 width={306}
                 height={86}
                 className="w-full"
@@ -239,7 +245,8 @@ const Grid = ({services}:{services:Card[]}) => {
             <div className="space-y-4">
               <div className="flex justify-between items-start pb-6 border-b-2 border-gray-100">
                 <h3 className="text-lg sm:text-xl lg:text-2xl font-rethink font-medium text-text-secondary1 flex-1 pr-4">
-                  {services[5]?.title.split(" ")[0]} <br /> {services[5]?.title.split(" ")[1]}
+                  {services[5]?.title.split(" ")[0]} <br />{" "}
+                  {services[5]?.title.split(" ")[1]}
                 </h3>
                 <div className="bg-[#57AFD5] rounded-full p-2 shrink-0">
                   <svg
@@ -256,13 +263,16 @@ const Grid = ({services}:{services:Card[]}) => {
                 </div>
               </div>
               <p className="text-sm sm:text-base font-arial leading-relaxed text-text-muted1">
-                { services[5]?.description}
+                {services[5]?.description}
               </p>
             </div>
             <div className="mt-auto">
               <Image
                 src={services[5]?.images[0]?.url}
-                alt={services[5]?.images[0]?.alternativeText || "Cloud Security Service"}
+                alt={
+                  services[5]?.images[0]?.alternativeText ||
+                  "Cloud Security Service"
+                }
                 width={302}
                 height={172}
                 className="w-full rounded"

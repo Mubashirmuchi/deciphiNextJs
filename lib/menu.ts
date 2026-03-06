@@ -18,7 +18,7 @@ export interface NavItemsProps {
 export const navItems = [
   {
     name: "About us",
-    link: "/#about-us",
+    link: "/#about",
     isHashLink: true,
   },
   {
@@ -64,48 +64,7 @@ export const navItems = [
       },
     ],
   },
-  {
-    name: "Solutions",
-    link: "/solutions",
-    submenu: [
-      {
-        name: "Cyber Security Consulting",
-        desc: "Program that fits your goals",
-        icon: ShoppingBag,
-        path: "/services/cyber-security-consulting",
-      },
-      {
-        name: "Security Assessment & Testing",
-        desc: "Program that fits your goals",
-        icon: MapPin,
-        path: "/services/cyber-security-consulting",
-      },
-      {
-        name: "Cyber Security Awareness Training",
-        desc: "Program that fits your goals",
-        icon: BellDot,
-        path: "/services/cyber-security-consulting",
-      },
-      {
-        name: "System Integration Services",
-        desc: "Program that fits your goals",
-        icon: Play,
-        path: "/services/cyber-security-consulting",
-      },
-      {
-        name: " OT Cybersecurity",
-        desc: "Program that fits your goals",
-        icon: Play,
-        path: "/services/cyber-security-consulting",
-      },
-      {
-        name: "Cloud Security Services",
-        desc: "Program that fits your goals",
-        icon: Play,
-        path: "/services/cyber-security-consulting",
-      },
-    ],
-  },
+  
   {
     name: "Blog",
     link: "/blog",

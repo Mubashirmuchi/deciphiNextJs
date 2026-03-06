@@ -2,10 +2,11 @@ import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 import Grid from "./grid";
 import type { ServiceSection } from "@/types/home";
+import ControlSection from "./PenetrationTestingService";
 
 const ServicesSection = ({ServiceSection}:{ServiceSection:ServiceSection}) => {
  return (
-    <section className="relative  flex flex-col gap-5 w-full  bg-white max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative flex flex-col gap-5 w-full  bg-white max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* dark:bg-black */}
       <div
         className={cn(
@@ -37,6 +38,8 @@ const ServicesSection = ({ServiceSection}:{ServiceSection:ServiceSection}) => {
       <p className="relative max-w-5xl text-base sm:text-lg font-arial leading-relaxed text-black/60">
          {ServiceSection?.description}
       </p>
+              <ControlSection />
+
       <Grid services={ServiceSection?.card} />
     </section>
   );
