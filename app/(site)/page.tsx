@@ -40,7 +40,7 @@ export default async function Home() {
         </Section>
         <Suspense fallback={<div className="h-96" />}>
           <Section id="about">
-            <AboutSection about={homePage?.AboutUs} />
+            <AboutSection />
           </Section>
         </Suspense>
         <ProductShowcase/>
@@ -52,7 +52,7 @@ export default async function Home() {
         </Suspense>
         <Suspense fallback={<div className="h-96" />}>
           <Section id="solutions">
-            <Solutions solutionsSection={homePage?.SolutionsSection} />
+            <Solutions />
           </Section>
         </Suspense>
         <Suspense fallback={<div className="h-96" />}>
