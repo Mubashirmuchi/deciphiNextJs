@@ -10,6 +10,7 @@ import type { Variants } from "framer-motion";
 import CTAButton from "./CTA";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 // ── Nav data ──────────────────────────────────────────────────────────
 export const navItems = [
@@ -164,6 +165,8 @@ export default function Navbar() {
   const [scrolled, setScrolled]             = useState(false);
   const navRef     = useRef<HTMLDivElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const path = usePathname();
+  console.log("path",path)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -193,7 +196,7 @@ export default function Navbar() {
 
         {/* Bar */}
         <div className={`flex items-center justify-between rounded-md px-6 py-3 transition-all duration-300
-          ${scrolled ? "bg-black/60  backdrop-blur-xl shadow-lg shadow-black/20 border-0" : "border-0"}`}>
+          ${scrolled ||path !== "/" ?  "bg-black/60  backdrop-blur-xl shadow-lg shadow-black/20 border-0" : "border-0"}`}>
 
        <Link href="/" className="flex items-center gap-2.5">
 <Image
