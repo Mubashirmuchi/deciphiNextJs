@@ -174,20 +174,9 @@ export default function AboutSection({ about }: { about: AboutUs }) {
             custom={4} variants={fadeUp} initial="hidden"
             animate={rightIn ? "visible" : "hidden"}
           >
-            {/* <motion.a
-              href="/contact"
-              className="inline-flex items-center gap-2 bg-[#8B1A1A] text-white
-                         text-sm font-semibold px-7 py-3.5 rounded-xl shadow-md"
-              whileHover={{ backgroundColor: "#9e1f1f", y: -1, boxShadow: "0 10px 28px rgba(139,26,26,0.35)" }}
-              whileTap={{ scale: 0.97 }}
-            >
-              Contact Us
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </motion.a> */}
+
             <CTAButton className="inline-flex items-center gap-2  text-white
-                         text-sm font-semibold px-7 py-3.5 rounded-xl shadow-md" href="/contact" text="Contact Us" />
+                         text-sm font-semibold px-7 py-3.5  shadow-md" href="/contact" text="Contact Us" />
           </motion.div>
 
         </div>

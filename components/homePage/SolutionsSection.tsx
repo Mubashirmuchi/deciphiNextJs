@@ -154,7 +154,6 @@ export default function SolutionsSection({
   const [activeId, setActiveId] = useState<string>(data.items[0]?.id ?? "");
   const active = data.items.find((s) => s.id === activeId) ?? data.items[0];
 
-console.log("solutionsSection",solutionsSection?.title)
   return (
     <section className="bg-white py-20 px-4 md:px-8" aria-labelledby="solutions-heading">
       <div className="max-w-6xl mx-auto">
@@ -170,14 +169,21 @@ console.log("solutionsSection",solutionsSection?.title)
           </div>
 
           {/* H2 — heading-xl */}
+        
+        
           <h2 id="solutions-heading" className={`${tx["heading-xl"]} text-gray-900 mb-4`}>
-            {/* Red highlighted word, matching screenshot */}
             <span className="inline-flex items-center justify-center
-                             px-4 py-1 rounded-md bg-[#C0392B] text-white mr-3">
+                             px-4 py-1 rounded-sm bg-[#E85744] text-white mr-3">
               {solutionsSection?.title?.titleLine1}
             </span>
             {solutionsSection?.title?.titleLine2}
           </h2>
+
+
+    
+
+
+
 
           {/* Description — body */}
           <p className={`${tx["body"]} text-gray-500 max-w-lg`}>

@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
 import Image from "next/image";
+import CTAButton from "../CTA";
 
 const textStyles = {
   display: "text-5xl md:text-6xl font-bold leading-tight tracking-tight",
@@ -36,7 +37,7 @@ export default function TrustedSection() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
    {/* Left – Text content */}
-        <div ref={contentRef} className="flex flex-col gap-7 lg:gap-9">
+        <div ref={contentRef} className="flex flex-col gap-7 lg:gap-7">
 
           {/* Small label */}
           <motion.div
@@ -45,9 +46,18 @@ export default function TrustedSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="inline-flex items-center gap-2"
           >
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
-            <span className={`${textStyles.overline} text-emerald-700`}>WHY CHOOSE US</span>
+
+                   <div className="inline-flex items-center gap-2 border border-gray-200 bg-white
+                          rounded-sm px-4 py-1.5 mb-5 ">
+            <span className="w-2 h-2 rounded-full bg-emerald-500" aria-hidden="true" />
+            <span className={`${textStyles.overline} text-gray-500`}>{'WHY CHOOSE US'}</span>
+          </div>
+           
           </motion.div>
+
+
+
+
 
           {/* Main heading */}
           <motion.h2
@@ -56,10 +66,22 @@ export default function TrustedSection() {
             transition={{ duration: 0.7, delay: 0.35 }}
             className={`${textStyles.display} text-gray-900`}
           >
-            Trusted
+          <span className="inline-flex items-center justify-center
+                             px-4 py-1 rounded-sm bg-[#E85744] text-white mr-3">
+              {"Trusted "}
+            </span>
             <br />
-            For a Reason
+        {  "  For a Reason"}
           </motion.h2>
+
+{/* 
+             <h2 id="solutions-heading" className={`${tx["heading-xl"]} text-gray-900 mb-4`}>
+            <span className="inline-flex items-center justify-center
+                             px-4 py-1 rounded-sm bg-[#E85744] text-white mr-3">
+              {solutionsSection?.title?.titleLine1}
+            </span>
+            {solutionsSection?.title?.titleLine2}
+          </h2> */}
 
           {/* Description */}
           <motion.p
@@ -81,7 +103,7 @@ export default function TrustedSection() {
             animate={contentInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.65 }}
           >
-            <motion.a
+            {/* <motion.a
               href="/contact"
               className="inline-flex items-center px-8 py-4 bg-red-700 hover:bg-red-800 
                          text-white font-semibold text-base rounded-xl shadow-md 
@@ -90,7 +112,8 @@ export default function TrustedSection() {
               whileTap={{ scale: 0.97 }}
             >
               Contact us
-            </motion.a>
+            </motion.a> */}
+            <CTAButton text="Contact Us" href="/contact" />
           </motion.div>
         </div>
 
