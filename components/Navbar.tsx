@@ -11,6 +11,7 @@ import CTAButton from "./CTA";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import LanguageSwitcher from "./Common/laguageswitcher";
 
 // ── Nav data ──────────────────────────────────────────────────────────
 export const navItems = [
@@ -19,12 +20,12 @@ export const navItems = [
     name: "Services",
     link: "/services",
     submenu: [
-      { name: "Cyber Security Consulting",         desc: "Expert guidance tailored to your goals",       icon: ShoppingBag, path: "/services/consulting"  },
-      { name: "Security Assessment & Testing",     desc: "Identify vulnerabilities before attackers do", icon: Shield,      path: "/services/assessment"  },
-      { name: "Cyber Security Awareness Training", desc: "Empower your team with knowledge",             icon: BellDot,     path: "/services/training"    },
-      { name: "System Integration Services",       desc: "Seamless, secure tech integration",            icon: Play,        path: "/services/integration" },
-      { name: "OT Cybersecurity",                  desc: "Protect operational technology environments",  icon: MapPin,      path: "/services/ot"          },
-      { name: "Cloud Security Services",           desc: "Secure your cloud infrastructure end-to-end", icon: Cloud,       path: "/services/cloud"       },
+      { name: "Cyber Security Consulting", desc: "Expert guidance tailored to your goals", icon: ShoppingBag, path: "/services/consulting" },
+      { name: "Security Assessment & Testing", desc: "Identify vulnerabilities before attackers do", icon: Shield, path: "/services/assessment" },
+      { name: "Cyber Security Awareness Training", desc: "Empower your team with knowledge", icon: BellDot, path: "/services/training" },
+      { name: "System Integration Services", desc: "Seamless, secure tech integration", icon: Play, path: "/services/integration" },
+      { name: "OT Cybersecurity", desc: "Protect operational technology environments", icon: MapPin, path: "/services/ot" },
+      { name: "Cloud Security Services", desc: "Secure your cloud infrastructure end-to-end", icon: Cloud, path: "/services/cloud" },
     ],
   },
   { name: "Blog", link: "/blog" },
@@ -32,13 +33,13 @@ export const navItems = [
 
 // ── Variants ──────────────────────────────────────────────────────────
 const dropdownVariants: Variants = {
-  hidden:  { opacity: 0, y: -8, scale: 0.97 },
-  visible: { opacity: 1, y: 0,  scale: 1,    transition: { duration: 0.22, ease: [0.22, 1, 0.36, 1] } },
-  exit:    { opacity: 0, y: -6, scale: 0.97, transition: { duration: 0.15, ease: "easeIn" } },
+  hidden: { opacity: 0, y: -8, scale: 0.97 },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.22, ease: [0.22, 1, 0.36, 1] } },
+  exit: { opacity: 0, y: -6, scale: 0.97, transition: { duration: 0.15, ease: "easeIn" } },
 };
 
 const itemVariants: Variants = {
-  hidden:   { opacity: 0, x: -6 },
+  hidden: { opacity: 0, x: -6 },
   visible: (i: number) => ({
     opacity: 1, x: 0,
     transition: { delay: i * 0.045, duration: 0.2, ease: "easeOut" },
@@ -47,14 +48,14 @@ const itemVariants: Variants = {
 
 // height-based collapse for mobile panels
 const collapseVariants: Variants = {
-  hidden:  { opacity: 0, height: 0 },
+  hidden: { opacity: 0, height: 0 },
   visible: { opacity: 1, height: "auto", transition: { duration: 0.28, ease: [0.22, 1, 0.36, 1] } },
-  exit:    { opacity: 0, height: 0,      transition: { duration: 0.18, ease: "easeIn" } },
+  exit: { opacity: 0, height: 0, transition: { duration: 0.18, ease: "easeIn" } },
 };
 
 // staggered slide-in for sub-items
 const mobileItemVariants: Variants = {
-  hidden:  { opacity: 0, x: -10 },
+  hidden: { opacity: 0, x: -10 },
   visible: (i: number) => ({
     opacity: 1, x: 0,
     transition: { delay: i * 0.05, duration: 0.22, ease: "easeOut" },
@@ -159,14 +160,14 @@ function MobileSubmenu({
 
 // ── Navbar ────────────────────────────────────────────────────────────
 export default function Navbar() {
-  const [openDropdown, setOpenDropdown]     = useState<string | null>(null);
-  const [mobileOpen, setMobileOpen]         = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
-  const [scrolled, setScrolled]             = useState(false);
-  const navRef     = useRef<HTMLDivElement>(null);
+  const [scrolled, setScrolled] = useState(false);
+  const navRef = useRef<HTMLDivElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const path = usePathname();
-  console.log("path",path)
+  console.log("path", path)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -183,8 +184,8 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  const openMenu  = (name: string) => { if (closeTimer.current) clearTimeout(closeTimer.current); setOpenDropdown(name); };
-  const closeMenu = ()              => { closeTimer.current = setTimeout(() => setOpenDropdown(null), 80); };
+  const openMenu = (name: string) => { if (closeTimer.current) clearTimeout(closeTimer.current); setOpenDropdown(name); };
+  const closeMenu = () => { closeTimer.current = setTimeout(() => setOpenDropdown(null), 80); };
   const toggleMobile = (name: string) => setMobileExpanded((p) => (p === name ? null : name));
 
   return (
@@ -196,24 +197,24 @@ export default function Navbar() {
 
         {/* Bar */}
         <div className={`flex items-center justify-between rounded-md px-6 py-3 transition-all duration-300
-          ${scrolled ||path !== "/" ?  "bg-black/60  backdrop-blur-xl shadow-lg shadow-black/20 border-0" : "border-0"}`}>
+          ${scrolled || path !== "/" ? "bg-black/60  backdrop-blur-xl shadow-lg shadow-black/20 border-0" : "border-0"}`}>
 
-       <Link href="/" className="flex items-center gap-2.5">
-<Image
-            src="/img_frame_38.svg"
-            width={150}
-            height={40}
-            alt="Deciphi Logo"
-            className="w-37.5 h-10 object-contain"
-          />
+          <Link href="/" className="flex items-center gap-2.5">
+            <Image
+              src="/img_frame_38.svg"
+              width={150}
+              height={40}
+              alt="Deciphi Logo"
+              className="w-37.5 h-10 object-contain"
+            />
 
-    </Link>
+          </Link>
 
           {/* Desktop pill — unchanged */}
           <div className="hidden  md:flex items-center gap-1  border-none rounded-md px-10 py-2">
             {navItems.map((item) => {
               const hasSubmenu = !!item.submenu;
-              const isOpen     = openDropdown === item.name;
+              const isOpen = openDropdown === item.name;
               return (
                 <div
                   key={item.name} className="relative"
@@ -244,13 +245,19 @@ export default function Navbar() {
             })}
           </div>
 
+          <div className="hidden md:flex items-center gap-4">
+            <LanguageSwitcher />
+            <CTAButton className="px-3 py-1 hidden md:inline-flex" text="Contact us" href="/contact" />
+
+
+          </div>
+
+
      
+          <div className="flex items-center gap-4 md:hidden">
+              <LanguageSwitcher/>
+     {/* Hamburger */}
 
-          <CTAButton className="px-3 py-1 hidden md:inline-flex" text="Contact us"  href="/contact"/> 
-
-
-
-          {/* Hamburger */}
           <button
             className="md:hidden text-white p-1.5"
             onClick={() => { setMobileOpen((v) => !v); setMobileExpanded(null); }}
@@ -268,6 +275,11 @@ export default function Navbar() {
               )}
             </AnimatePresence>
           </button>
+
+            
+          </div>
+
+
         </div>
 
         {/* ── Mobile sidebar-style dropdown ── */}
@@ -280,6 +292,7 @@ export default function Navbar() {
                          bg-black/55 backdrop-blur-xl border border-white/15 shadow-xl"
             >
               <nav className="p-3 flex flex-col gap-0.5">
+
 
                 {navItems.map((item) => {
                   const hasSubmenu = !!item.submenu;
@@ -296,9 +309,9 @@ export default function Navbar() {
                                         px-4 py-3 rounded-xl text-sm font-medium
                                         transition-colors duration-200
                                         ${isExpanded
-                                          ? "text-white bg-white/12"
-                                          : "text-white/80 hover:text-white hover:bg-white/8"
-                                        }`}
+                                ? "text-white bg-white/12"
+                                : "text-white/80 hover:text-white hover:bg-white/8"
+                              }`}
                           >
                             <span className="flex items-center gap-3">
                               {/* Animated accent bar */}

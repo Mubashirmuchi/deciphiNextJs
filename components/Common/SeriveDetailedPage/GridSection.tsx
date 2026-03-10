@@ -151,7 +151,7 @@ export default function WhatWeProvideSection({
             custom={0} variants={fadeUp} initial="hidden"
             animate={headerIn ? "visible" : "hidden"}
             className="inline-flex items-center gap-2 border border-gray-200 bg-white
-                       rounded-full px-4 py-1.5 mb-6 shadow-sm"
+                       rounded-sm px-4 py-1.5 mb-6 "
           >
             <span className="w-2 h-2 rounded-full bg-emerald-500" />
             <span className="text-xs font-semibold uppercase tracking-widest text-gray-500">{label}</span>
