@@ -38,7 +38,6 @@ const HeroSection = ({ hero }: HeroSection) => {
   const imgUrl = hero?.backgroundImage?.url;
 
 
-
   return (
     <section
       id="home"
@@ -58,7 +57,12 @@ const HeroSection = ({ hero }: HeroSection) => {
 
       {/* Video for desktop */}
       <div className="hidden lg:block">
-        <BackgroundVideo src={videoUrl || ""} />
+        {/* <BackgroundVideo src={videoUrl || ""} /> */}
+        <BackgroundVideo
+  src={videoUrl || ""}
+  overlay={true}
+  crossfadeDuration={1.8}  // seconds — tune to your video
+/>
       </div>
 
       {/* Overlay */}
