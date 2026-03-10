@@ -1,4 +1,4 @@
-import { Header } from "@/components/Navbar";
+import Navbar  from "@/components/Navbar";
 import Footer from "@/components/Common/Footer";
 import { getHome } from "@/data/loaders";
 
@@ -52,7 +52,7 @@ export default function SiteLayout({
 }) {
   return (
     <>
-      <Header />
+      <Navbar />
       {children}
       <Footer />
     </>

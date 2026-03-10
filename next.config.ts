@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "midnightblue-raccoon-734944.hostingersite.com",
+        hostname: "images.unsplash.com",
         pathname: "/**",
       },
       {
@@ -19,7 +19,7 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },{
         protocol: "https",
-        hostname: "images.unsplash.com",
+        hostname: "img.freepik.com",
         pathname: "/**",
       }
     ],

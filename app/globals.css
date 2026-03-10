@@ -5,10 +5,7 @@
   --font-geist-mono: "Geist Mono", monospace;
 }
 
-html,body {
-  scroll-behavior: smooth;
-   -webkit-overflow-scrolling: touch;
-}
+
 
 :root  {
   

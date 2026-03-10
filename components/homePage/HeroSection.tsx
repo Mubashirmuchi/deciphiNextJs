@@ -1,18 +1,48 @@
-import { Button } from "@/components/ui/button";
-import { ChevronRight } from "lucide-react";
-import Link from "next/link";
+"use client"
+import { motion, Variants } from "motion/react";
 import BackgroundVideo from "../BackgroundVideo";
 import Image from "next/image";
 import type { HeroSection } from "@/types/home";
+import CTAButton from "../CTA";
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.18,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+
+
+export const fadeUp: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 32 ,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.85,
+      ease:  [0.22, 1, 0.36, 1] as [number, number, number, number],
+    },
+  },
+};
+
 
 const HeroSection = ({ hero }: HeroSection) => {
   const videoUrl = hero?.backgroundVideo?.url;
   const imgUrl = hero?.backgroundImage?.url;
 
+
+
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center w-full overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center w-full"
     >
       {/* Background Video with Fallback */}
 
@@ -32,35 +62,46 @@ const HeroSection = ({ hero }: HeroSection) => {
       </div>
 
       {/* Overlay */}
-      <div className="absolute inset-0 -z-10 bg-black/70 lg:bg-black/25" />
+      <div className="absolute inset-0 -z-10 bg-black/70 lg:bg-black/5" />
       {/* Content Overlay */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-        <div className="space-y-6 sm:space-y-8">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-rethink font-medium leading-tight text-text-light1">
-            {hero?.title.titleLine1}
-            <br className="hidden sm:block" />
-            <span className="sm:hidden"> </span>
-            {hero?.title.titleLine2}
-            <br className="hidden sm:block" />
-            <span className="sm:hidden"> </span>
-            {hero?.title.titleLine3}
-          </h1>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-arial font-normal leading-relaxed max-w-3xl mx-auto text-text-2">
-            {hero?.description}
-          </p>
-          <div className="pt-4">
-            <Link href={hero?.Cta?.url || "/contact"}>
-              <Button
-                className="bg-[linear-gradient(113deg,#ac1b1b_0%,#721212_50%,#460a0a_100%)]   hover:bg-[linear-gradient(113deg,#c62828_0%,#8b1c1c_50%,#5a0d0d_100%)]
-  transition-all duration-300  border-border-secondary1 rounded-md text-sm sm:text-base py-6 cursor-pointer"
-              >
-                {hero?.Cta?.text}
-                <ChevronRight className="ml-2" />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </div>
+     <div className="relative z-10 flex flex-col min-h-screen">
+
+   
+      {/* ── Hero copy ── */}
+      <motion.div
+        className="flex-1 flex flex-col items-center justify-center text-center
+                   px-6 md:px-12 pb-20 pt-10"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {/* Headline */}
+        <motion.h1
+          variants={fadeUp}
+          className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05]
+                     tracking-tight text-white max-w-3xl mx-auto"
+        >
+          Securing Your&nbsp;Network,<br />
+          With Cybersecurity<br />
+          Expertise.
+        </motion.h1>
+
+        {/* Sub-copy */}
+        <motion.p
+          variants={fadeUp}
+          className="text-lg md:text-xl text-white/85 max-w-2xl mx-auto mt-7 leading-relaxed"
+        >
+          At Deciphi, we help organizations stay ahead of evolving cyber risks. Our
+          expert-led services empower you to act with confidence and secure your future.
+        </motion.p>
+
+        {/* CTA */}
+        <motion.div variants={fadeUp} className="mt-10">
+          <CTAButton  href='/contact' text="Get Started" />
+        </motion.div>
+      </motion.div>
+
+    </div>
     </section>
   );
 };
