@@ -108,7 +108,7 @@ export default async function BlogRoute({ searchParams }: PageProps) {
                               </p>
                               <div className="flex items-center gap-3">
                                 <span className="rounded-full  outline-1 outline-primary text-primary px-3 py-0.5 text-sm">
-                                  {item.category.name}
+                                  {item?.category?.name}
                                 </span>
                                 <span className="text-sm text-muted-foreground">
                                   {formatDate(item.publishedAt)}

@@ -36,7 +36,7 @@ export default async function Home() {
           <Solutions solutionsSection={homePage?.SolutionsSection} />
         </Suspense>
            <Suspense fallback={<div className="h-96" />}>
-          <ChooseUsSection chooseUs={homePage?.WhyChooseUs} />
+          <ChooseUsSection  />
         </Suspense>
       </PageWrapper>
     </main>

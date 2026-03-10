@@ -155,7 +155,7 @@ const Footer = () => {
               <ul className="space-y-3 sm:space-y-4">
                 <li>
                   <Link
-                    href="/#about"
+                    href="/#about-us"
                     className="text-sm sm:text-base font-arial text-text-muted1 hover:text-text-primary1 transition-colors duration-200"
                   >
                     About us
